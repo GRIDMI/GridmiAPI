@@ -1,4 +1,4 @@
-# ❤️ GridmiAPI
+# GridmiAPI
 
 Very simple and powerful work with RestAPI for Android.
 

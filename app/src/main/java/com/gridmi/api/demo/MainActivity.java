@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialization the library
-        GridmiAPI.init("http://gridmi.com/API", 10000, JSONObject.class);
+        GridmiAPI.init("http://gridmi.com/API/", 10000, JSONObject.class);
 
         // Create new request instance
         GridmiAPI.Request request = new GridmiAPI.Request("profile/get");

@@ -364,7 +364,7 @@ GridmiAPI.onRequest(this, new GridmiAPI.Request("GET", "stream/get"), new Gridmi
 }).start();
 ~~~
 
-## Синхронизация Thread UI & Thread Background
+## Thread UI & Thread Background Sync
 
 There is a need to synchronize two threads so that the background thread continues to work only when the main thread has completed its work. To do this, you need to pass an additional argument.
 
@@ -439,26 +439,26 @@ This table describes the constructors of this class.
 
 |Version|Description|
 |:----:|----|
-|String|Тут передаете Ваш `endpoint`. = *GET "STATIC + endpoint"*|
-|String, String|Тут передаете метод и Ваш `endpoint`. = *METHOD "STATIC + endpoint"*|
-|String, String, boolean|Тут передаете Ваш метод, **URL** и `boolean` - требуется ли временно заменить статическое определение. = *METHOD IF boolean "URL" ELSE "STATIC + URL"*|
-|String, Strign, Class|Тут передаете метод, `endpoint` и `Class` который укажет библиотеке к какому типу необходимо привести ответ сервера. = *METHOD "STATIC + endpoint"*|
+|String|Then pass your `endpoint`. = *GET "STATIC + endpoint"*|
+|String, String|Then pass the method and your `endpoint`. = *METHOD "STATIC + endpoint"*|
+|String, String, boolean|Here you pass your method, **URL** and `boolean` - do you need to temporarily replace the static definition. = *METHOD IF boolean "URL" ELSE "STATIC + URL"*|
+|String, Strign, Class|Then pass the method, `endpoint` and` Class`, which tells the library what type the server response should be cast to. = *METHOD "STATIC + endpoint"*|
 
-В данной таблице описаны методы для гибкой работы с запросами.
+This table describes the methods for flexible work with queries.
 
 |Method|Arguments|Return|Description|
 |:----:|---------|:----:|-----------|
-|setTimeOut()|int|int|Устанавливает время ожидания соединения.|
-|getLastURL()|-|String / **NULL**|Возаращает последнений инициализированный URL-адрес.|
-|addHeader()|(String, `ENUM`(boolean, short, char, float, int, long, double, boolean, String))|GridmiAPI.Header -> `ENUM`(Byte, Short, Char, Float, Int, Long, Double, Boolean)|Добавляет заголовок к запросу.|
-|removeHeader()|GridmiAPI.Header|boolean|Удаляет заголовок запроса.|
-|clearRequestHeaders()|-|void|Удаляет все заголовки запроса.|
-|addParam()|(String, `ENUM`(boolean, short, char, float, int, long, double, boolean, String))|GridmiAPI.Param -> `ENUM`(Byte, Short, Char, Float, Int, Long, Double, Boolean)|Добавляет get-параметр к запросу.|
-|removeParam()|GridmiAPI.Param|boolen|Удаляет get-параметр запроса.|
-|clearRequestParams()|-|void|Удаляет все get-параметры запроса.|
-|setBody()|`ENUM`(String, JSONObject, JSONArray, GridmiAPI.Multipart)|void|Устанавливает тело запроса текущего экземпляра.|
-|clearRequestBody()|-|void|Удаляет тело запроса.|
-|setResponseBody()|Class|Class|Устанавливает класс, к которому относятся ожидаемые данные после выполнения запроса|
+|setTimeOut()|int|int|Sets the connection timeout.|
+|getLastURL()|-|String / **NULL**|Returns the last initialized URL.|
+|addHeader()|(String, `ENUM`(boolean, short, char, float, int, long, double, boolean, String))|GridmiAPI.Header -> `ENUM`(Byte, Short, Char, Float, Int, Long, Double, Boolean)|Add a header to the request.|
+|removeHeader()|GridmiAPI.Header|boolean|Delete a header from the request.|
+|clearRequestHeaders()|-|void|Remove all headers from the request.|
+|addParam()|(String, `ENUM`(boolean, short, char, float, int, long, double, boolean, String))|GridmiAPI.Param -> `ENUM`(Byte, Short, Char, Float, Int, Long, Double, Boolean)|Add a param to the request.|
+|removeParam()|GridmiAPI.Param|boolen|Delete a param from the request.|
+|clearRequestParams()|-|void|Remove all params from the request.|
+|setBody()|`ENUM`(String, JSONObject, JSONArray, GridmiAPI.Multipart)|void|Sets the request body of the current instance.|
+|clearRequestBody()|-|void|Delete a body of the request.|
+|setResponseBody()|Class|Class|Set a class for conversion when processing a response.|
 
 ## License
 

@@ -10,7 +10,7 @@ This library will allow you to easily fulfill server requests. You do not need t
 
 Add the dependency to your *build.gradle* project file:
 
-`implementation 'com.gridmi.api:GridmiAPI:1.0.10'`
+`implementation 'com.gridmi.api:GridmiAPI:1.0.11'`
 
 ## Start
 

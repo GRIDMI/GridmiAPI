@@ -1,7 +1,9 @@
 package com.gridmi.api.demo;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -48,6 +50,70 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }).start();
+
+        GridmiAPI.onRequest(this, new GridmiAPI.Request("profile/get"), new GridmiAPI.Handler.OUT() {
+
+            @Override
+            protected void onSuccess(GridmiAPI.Response response) {
+                Log.d("TagGridmiAPI", "result = " + ((JSONObject) response.getData()).toString());
+            }
+
+            @Override
+            protected void onFailed(Exception exception) {
+                Log.d("TagGridmiAPI", "exception = " + exception.getMessage());
+            }
+
+        }).start();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null || data.getData() == null) return;
+
+        try {
+
+            // Экземпляр запроса к серверу
+            GridmiAPI.Request request = new GridmiAPI.Request("POST", "photo/add");
+
+            // Создаем экземпляр многосоставного тела запроса
+            GridmiAPI.Multipart multipart = new GridmiAPI.Multipart(getContentResolver());
+            multipart.appendData("photo", data.getData());
+
+            // Установить тело запроса
+            request.setBody(multipart);
+
+            // Отпраивть запрос
+            GridmiAPI.onRequest(this, request, new GridmiAPI.Handler.OUT() {
+
+                @Override
+                protected void onSuccess(GridmiAPI.Response response) {
+                    try {
+
+                        // Получить результат с тела запроса
+                        boolean result = ((JSONObject) response.getData()).getBoolean("result");
+
+                        // Уведомление
+                        Toast.makeText(MainActivity.this, result ? "Загружено!" : "Ошибка!", Toast.LENGTH_LONG).show();
+
+                    } catch (Exception exception) {
+                        this.onFailed(exception);
+                    }
+                }
+
+                @Override
+                protected void onFailed(Exception exception) {
+                    // Уведомление о текущем исключении
+                    Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
+            }).start();
+
+        } catch (Exception exception) {
+            Toast.makeText(this, exception.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
     }
 

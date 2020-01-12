@@ -10,7 +10,7 @@ This library will allow you to easily fulfill server requests. You do not need t
 
 Add the dependency to your *build.gradle* project file:
 
-`implementation 'com.gridmi.api:GridmiAPI:1.0.11'`
+`implementation 'com.gridmi.api:GridmiAPI:1.0.14'`
 
 ## Start
 
@@ -452,13 +452,31 @@ This table describes the methods for flexible work with queries.
 |getLastURL()|-|String / **NULL**|Returns the last initialized URL.|
 |addHeader()|(String, `ENUM`(boolean, short, char, float, int, long, double, boolean, String))|GridmiAPI.Header -> `ENUM`(Byte, Short, Char, Float, Int, Long, Double, Boolean)|Add a header to the request.|
 |removeHeader()|GridmiAPI.Header|boolean|Delete a header from the request.|
-|clearRequestHeaders()|-|void|Remove all headers from the request.|
+|clearHeaders()|-|void|Remove all headers from the request.|
 |addParam()|(String, `ENUM`(boolean, short, char, float, int, long, double, boolean, String))|GridmiAPI.Param -> `ENUM`(Byte, Short, Char, Float, Int, Long, Double, Boolean)|Add a param to the request.|
 |removeParam()|GridmiAPI.Param|boolen|Delete a param from the request.|
-|clearRequestParams()|-|void|Remove all params from the request.|
-|setBody()|`ENUM`(String, JSONObject, JSONArray, GridmiAPI.Multipart)|void|Sets the request body of the current instance.|
-|clearRequestBody()|-|void|Delete a body of the request.|
+|clearParams()|-|void|Remove all params from the request.|
+|setBody()|(`ENUM`(String, JSONObject, JSONArray, GridmiAPI.Multipart), boolean(setDefaultHeader))|void|Sets the request body of the current instance.|
+|removeBody()|-|void|Delete a body of the request.|
 |setResponseBody()|Class|Class|Set a class for conversion when processing a response.|
+|getTimeOut()|-|int|Allows you to get the timeOut request|
+|setMethod()|String|String|Sets the connection method|
+|setURL()|String|String|Sets the connection address|
+|setConnectStaticHeaders()|boolean|boolean|Sets the ability to add static headers to the request|
+|setConnectStaticParams()|boolean|boolean|Sets the ability to add static params to the request|
+
+## GridmiAPI.StaticManager.class
+
+Static class for managing static data (`headers` and `parameters `).
+
+|Method|Argiments|Return|Description|
+|:----:|:-------:|:----:|:---------:|
+|addHeader()|(Header) or (String, String)|Instance of header if succeess added else NULL|Allows you to add a static header|
+|addParam()|(Param) or (String, String)|Instance of param if succeess added else NULL|Allows you to add a static param|
+|removeHeader()|-|TRUE if removed or FALSE if not removed|Allows you to remove a static header|
+|removeParam()|-|TRUE if removed or FALSE if not removed|Allows you to remove a static param|
+|clearHeaders()|-|VOID|Removes all static headers.|
+|clearParams()|-|VOID|Removes all static params.|
 
 ## License
 

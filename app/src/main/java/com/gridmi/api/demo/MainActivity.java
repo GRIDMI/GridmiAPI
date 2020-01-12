@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             multipart.appendData("photo", data.getData());
 
             // Установить тело запроса
-            request.setBody(multipart);
+            request.setBody(multipart, true);
 
             // Отпраивть запрос
             GridmiAPI.onRequest(this, request, new GridmiAPI.Handler.OUT() {

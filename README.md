@@ -17,7 +17,7 @@ Add the dependency to your *build.gradle* project file:
 The first thing you need to do is initialize the library. It is easy to do. You must call the static method of the class `GridmiAPI.init()`.
 
 ~~~
-GridmiAPI.init("http://gridmi.com/", 8000, JSONObject.class);
+GridmiAPI.init("http://gridmi.com", 8000, JSONObject.class);
 ~~~
 
 - http://gridmi.com/ - path to the handler on the server;
